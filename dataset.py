@@ -91,7 +91,12 @@ class VietnameseCharacterDataset(Dataset):
                 print(f"Warning: Diacritic '{dia}' not found in diacritic_vocab. Defaulting to 0.")
                 print(f"Available vocab: {self.diacritic_vocab}")
                 diacritic_indices.append(0)  # Default to first diacritic as fallback
-
+        base_char_indices = [
+            min(max(0, idx), len(self.base_char_vocab) - 1) for idx in base_char_indices
+        ]
+        diacritic_indices = [
+            min(max(0, idx), len(self.diacritic_vocab) - 1) for idx in diacritic_indices
+        ]
         return {
             'pixel_values': pixel_values,
             'labels': labels,

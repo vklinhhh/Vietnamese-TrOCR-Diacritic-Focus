@@ -50,8 +50,8 @@ class CurriculumDataset(Dataset):
             example = self.dataset.dataset[idx]
             
             # Get the word or character sequence
-            if 'word' in example:
-                text = example['word']
+            if 'label' in example:
+                text = example['label']
             elif 'full_character' in example:
                 # Handle when full_character is a list or a string representation of a list
                 if isinstance(example['full_character'], list):
